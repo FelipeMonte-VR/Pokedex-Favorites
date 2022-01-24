@@ -1,11 +1,9 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
-import { caminhosLinks } from "../../../dicts/paths";
+import { getJSON } from "../../api/getJSON";
 
-import { getPokemon } from "./vars/imagesImports";
-// import { getPokemons } from "./vars/pokemonsList";
-import { pokemonsList } from "../../../dicts/pokemonsList";
+import { caminhosLinks } from "../../../dicts/paths";
 import { cardColors } from "../../../dicts/cardColors";
 
 const SearchSession = styled.section`
@@ -43,8 +41,8 @@ const SearchButton = styled.input`
     font-weight: bold;
     color: #FFCB05;
 
-    cursor: not-allowed;
-    pointer-events: all !important;
+    /* cursor: not-allowed;
+    pointer-events: all !important; */
 `;
 
 
@@ -118,7 +116,7 @@ function pokemonCard(id, name, image, types, index) {
         <PokemonCard key={index} type={cardColors[[types[0]]]}>
             <CardLink href={caminhosLinks["detalhes"]+"?p="+name}>
                 <PokemonName>{name}</PokemonName>
-                <PokemonNumber>{id}</PokemonNumber>
+                <PokemonNumber>{("00" + id).slice(-3)}</PokemonNumber>
                 <SpotLight>
                     <PokemonImage src={image} />
                 </SpotLight>
@@ -128,6 +126,8 @@ function pokemonCard(id, name, image, types, index) {
 }
 
 function applyFilter(filtro) {
+    var pokemonsList = JSON.parse(getJSON('https://pokedex-api-three.vercel.app/api/pokemons'));
+    
     var filtered = []
 
     for (var i=0; i<pokemonsList.length; i++) {

@@ -10,15 +10,12 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { getJSON } from "./components/api/getJSON";
 
 const FalseBody = styled.div`
   text-align: center;
 `;
 
 function App() {
-  document.body.style = "background-color: #C6ECED;";
-
   return (
     <FalseBody>
       <BrowserRouter>

@@ -3,10 +3,10 @@ import React from "react";
 import Header from "../header";
 import MainDetalhes from "../main/detalhes";
 
-function Detalhes({trocaTema, temaVar}) {
+function Detalhes() {
     return(
         <>
-            <Header trocaTema={trocaTema} temaVar={temaVar}/>
+            <Header />
 
             <MainDetalhes />
         </>

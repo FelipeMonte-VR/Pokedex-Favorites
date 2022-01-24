@@ -3,10 +3,10 @@ import React from "react";
 import Header from "../header";
 import MainHome from "../main/home";
 
-function Home({trocaTema, temaVar}) {
+function Home() {
     return(
         <>
-            <Header trocaTema={trocaTema} temaVar={temaVar}/>
+            <Header />
 
             <MainHome />
         </>
