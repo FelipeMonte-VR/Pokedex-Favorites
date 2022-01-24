@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+
+import { caminhosLinks } from "./dicts/paths";
+
+import Home from "./components/pages/home";
+import Detalhes from "./components/pages/detalhes";
+
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import { getJSON } from "./components/api/getJSON";
+
+const FalseBody = styled.div`
+  text-align: center;
+`;
 
 function App() {
+  document.body.style = "background-color: #C6ECED;";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FalseBody>
+      <BrowserRouter>
+        <Routes>
+
+          <Route path={caminhosLinks["home"]} element={<Home />} />
+          <Route path={caminhosLinks["detalhes"]} element={<Detalhes />} />
+
+        </Routes>
+      </BrowserRouter>
+
+    </FalseBody>
+
   );
 }
 
