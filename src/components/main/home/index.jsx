@@ -142,7 +142,7 @@ function applyFilter(filtro) {
     }
     
     
-    if (filtered.length == 0) {
+    if (filtered.length === 0) {
         return <PokemonNotFound>Nenhum pokémon encontrado!</PokemonNotFound>
     } else {
         return (
