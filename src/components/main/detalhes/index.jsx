@@ -203,7 +203,7 @@ function buildBasics(pokemon) {
 
     return(
         <PokemonBasics>
-            <ReturnBtn href={caminhosLinks["home"]}> &lt; </ReturnBtn>
+            <ReturnBtn to={caminhosLinks["home"]}> &lt; </ReturnBtn>
 
             <Name>{pokemon["name"]}</Name>
             <Number>{("00" + pokemon["id"]).slice(-3)}</Number>
