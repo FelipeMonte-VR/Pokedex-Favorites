@@ -5,6 +5,7 @@ import { getJSON } from "../../api/getJSON";
 
 import { caminhosLinks } from "../../../dicts/paths";
 import { cardColors } from "../../../dicts/cardColors";
+import { Link } from "react-router-dom";
 
 const SearchSession = styled.section`
     margin: 0 0 40px 0;
@@ -63,7 +64,7 @@ const PokemonCard = styled.li`
     background-color: ${props => props.type};
 `;
 
-const CardLink = styled.a`
+const CardLink = styled(Link)`
     text-decoration: none;
 `;
 
@@ -114,7 +115,7 @@ const PokemonNotFound = styled.p`
 function pokemonCard(id, name, image, types, index) {
     return(
         <PokemonCard key={index} type={cardColors[[types[0]]]}>
-            <CardLink href={caminhosLinks["detalhes"]+"?p="+name}>
+            <CardLink to={caminhosLinks["detalhes"]+"?p="+name}>
                 <PokemonName>{name}</PokemonName>
                 <PokemonNumber>{("00" + id).slice(-3)}</PokemonNumber>
                 <SpotLight>
