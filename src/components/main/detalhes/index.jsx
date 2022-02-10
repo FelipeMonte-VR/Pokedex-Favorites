@@ -192,7 +192,7 @@ function capitalizeFirstLetter(string) {
 
 function buidTypes(types) {
     var type = capitalizeFirstLetter(types[0]);
-    if (types.length == 2) {
+    if (types.length === 2) {
         type += "/"+ capitalizeFirstLetter(types[1]);
     }
     return type;
