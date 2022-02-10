@@ -18,7 +18,7 @@ const FalseBody = styled.div`
 function App() {
   return (
     <FalseBody>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
 
           <Route path={caminhosLinks["home"]} element={<Home />} />
