@@ -5,6 +5,7 @@ import { getJSON } from "../../api/getJSON";
 
 import { caminhosLinks } from "../../../dicts/paths";
 import { cardColors } from "../../../dicts/cardColors";
+import { Link } from "react-router-dom";
 
 const Details = styled.section`
     width: 877px;
@@ -20,7 +21,7 @@ const Details = styled.section`
     align-items: flex-end;
 `;
 
-const ReturnBtn = styled.a`
+const ReturnBtn = styled(Link)`
     width: 13px;
     height: 28px;
     
