@@ -1,35 +1,21 @@
 import styled from "styled-components";
+import { BrowserRouter } from "react-router-dom";
 
-import { caminhosLinks } from "./dicts/paths";
+import ViewRoutes from "./views/ViewRoutes";
 
-import Home from "./components/pages/home";
-import Detalhes from "./components/pages/detalhes";
+function App() {
+    return (
+        <FalseBody>
+            {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
+            <BrowserRouter>
+                <ViewRoutes />
+            </BrowserRouter>
+        </FalseBody>
+    );
+}
 
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+export default App;
 
 const FalseBody = styled.div`
   text-align: center;
 `;
-
-function App() {
-  return (
-    <FalseBody>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Routes>
-
-          <Route path={caminhosLinks["home"]} element={<Home />} />
-          <Route path={caminhosLinks["detalhes"]} element={<Detalhes />} />
-
-        </Routes>
-      </BrowserRouter>
-
-    </FalseBody>
-
-  );
-}
-
-export default App;

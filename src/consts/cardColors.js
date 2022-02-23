@@ -2,7 +2,7 @@ export const cardColors = {
     bug:      "#BDDD6E",
     dark:     "#5F4632",
     dragon:   "#8A55FD",
-    electric:  "#969101",
+    electric: "#969101",
     fairy:    "#F87EA7",
     fighting: "#800B11",
     fire:     "#F66C6D",
