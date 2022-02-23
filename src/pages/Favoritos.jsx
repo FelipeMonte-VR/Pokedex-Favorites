@@ -1,59 +1,30 @@
-import { useEffect, useState } from "react";
-
-import LoadingMessage from "../components/loadingMessage/LoadingMessage";
-import ErrorMessage from "../components/errorMessage/ErrorMessage";
+import styled from "styled-components";
+import Card from "../components/card/Card";
 import Header from "../components/header/Header";
+import { getFavorites } from "../helpers/localStoreManager";
 
 export default function Favoritos() {
-    
-    const [pokemons, setPokemons] = useState([]);
-    const [status, setStatus] = useState('loading');
-    const [filter, setFilter] = useState("");
 
-    let mainContent;
-
-    useEffect(() => {
-        setStatus('loading');
-        fetch("https://pokedex-api-three.vercel.app/api/pokemons")
-            .then((resposta) => {
-                if (resposta.ok) {
-                    return resposta.json();
-                } else if (resposta.status === 404) {
-                    return Promise.reject("erro 404");
-                } else {
-                    return Promise.reject("outro erro: " + resposta.status);
-                }
-            })
-            .then((resposta) => {
-                setPokemons(resposta);
-                setStatus('done');
-            })
-            .catch(() => {
-                setStatus('error');
-            });
-    }, []);
-
-    if (status === 'loading') {
-        mainContent = <LoadingMessage />
-    }else if (status === 'error') {
-        mainContent = <ErrorMessage />
-    } else {
-        mainContent = <MainContent pokemons={pokemons} filter={filter} setFilter={setFilter} />
-    }
+    let favoritesPokemons = getFavorites();
 
     return (
         <>
             <Header />
 
-            {mainContent}
+            {/* <main>
+                <PokemonsList>
+                    {favoritesPokemons.map((pokemon) => {
+                        return(
+                            <Card id={pokemon["id"]} name={pokemon["name"]} image={pokemon["image"]} types={pokemon["types"]} />
+                        );
+                    })}
+                </PokemonsList>
+            </main> */}
         </>
     );
 }
 
-function MainContent({ pokemons, filter, setFilter }) {
-    return (
-        <main>
-            
-        </main>
-    );
-}
+const PokemonsList = styled.ul`
+    padding: 0;
+    margin: 0;
+`;

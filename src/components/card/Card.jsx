@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 
 import { cardColors } from "../../consts/cardColors.js";
 import { routePaths } from "../../consts/routePaths.js";
+import FavoriteButton from "../favoriteButton/FavoriteButton.jsx";
+import padNumeber from "../../helpers/padNumber.js";
 
 export default function Card({id, name, image, types}) {
-    const fav = false;
-    
 
     return(
         <PokemonCard type={cardColors[types[0]]} key={id}>
 
             <CardContent>
                 <PokemonName>{name}</PokemonName>
-                <PokemonNumber>{id.toString().padStart(3, '0')}</PokemonNumber>
+                <PokemonNumber>{padNumeber(id)}</PokemonNumber>
                 <SpotLight>
                     <PokemonImage src={image} alt={name} />
                 </SpotLight>
@@ -21,33 +21,9 @@ export default function Card({id, name, image, types}) {
 
             <Links>
                 <CardLink to={routePaths.detalhes+'?p='+name} />
-                <FavIcon onClick={() => {
-                    
-                    Storage.prototype.setObj = function(key, obj) {
-                        return this.setItem(key, JSON.stringify(obj))
-                    }
-                    
-                    Storage.prototype.getObj = function(key) {
-                        return JSON.parse(this.getItem(key))
-                    }
-
-
-
-
-                    var names = JSON.parse(localStorage.getItem("names"));
-                    names.push(name);
-                    // names[0] = prompt("New member name?");
-                    localStorage.setItem("names", JSON.stringify(names));
-                    
-                    //...
-                    var storedNames = JSON.parse(localStorage.getItem("names"));
-                    console.log(storedNames);
-
-
-                    // console.log(window.localStorage.getItem('fav'));
-                }}>
-                    <p>{fav ? 'X' : 'V'}</p>
-                </FavIcon>
+                <FavoriteButtonPosition>
+                    <FavoriteButton id={id} name={name} image={image} types={types}/>
+                </FavoriteButtonPosition>
             </Links>
 
         </PokemonCard>
@@ -124,23 +100,8 @@ const CardLink = styled(Link)`
     margin: 0; display: inline-block; width: 100%; height: 100%;
 `;
 
-const FavIcon = styled.button`
+const FavoriteButtonPosition = styled.div`
     position: absolute;
     top: 24px;
     right: 15px;
-    border: none;
-
-    /* background-color: inherit; */
-    
-    /* 
-    
-    cursor: pointer; */
-
-    /* font-family: Font Awesome 5 Free; */
-    /* font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 23px;
-
-    color: #FFFBEB; */
 `;

@@ -9,6 +9,8 @@ import { routePaths } from "../consts/routePaths";
 import LoadingMessage from "../components/loadingMessage/LoadingMessage";
 import ErrorMessage from "../components/errorMessage/ErrorMessage";
 import AnimatedBar from "../components/animatedBar/AnimatedBar";
+import padNumeber from "../helpers/padNumber";
+import FavoriteButton from "../components/favoriteButton/FavoriteButton";
 
 export default function Detalhes() {
 
@@ -98,7 +100,13 @@ function buildBasics(pokemon) {
             <ReturnBtn to={routePaths.home}> &lt; </ReturnBtn>
 
             <Name>{pokemon.name}</Name>
-            <Number>{pokemon.id.toString().padStart(3, '0')}</Number>
+
+            <FavoriteButtonPosition>
+                <FavoriteButton name={pokemon.name}/>
+            </FavoriteButtonPosition>
+
+            <Number>{padNumeber(pokemon.id)}</Number>
+
             <SpotLight>
                 <PokemonImage src={pokemon.image} alt={pokemon.name} />
             </SpotLight>
@@ -125,9 +133,7 @@ function buildBasics(pokemon) {
 
 function buildStatLine(name, value, index) {
     var barSize = value * BAR_MAX_SIZE / 100
-    if (value === 35) {
-        console.log(barSize)
-    }
+    
     return (
         <StatLine key={index}>
             <StatName>{name}</StatName>
@@ -178,6 +184,8 @@ const ReturnBtn = styled(Link)`
 `;
 
 const PokemonBasics = styled.section`
+    position: relative;
+
     width: 338px;
     height: 436px;
 
@@ -318,4 +326,10 @@ const StatBar = styled.div`
     width: ${BAR_MAX_SIZE}px;
     height: 7px;
     background: #C4C4C4;
+`;
+
+const FavoriteButtonPosition = styled.div`
+    position: absolute;
+    top: 27px;
+    right: 32px;
 `;
