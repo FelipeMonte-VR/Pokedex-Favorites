@@ -1,10 +1,24 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { addFavorite, getFavorites, removeFavorite } from "../../helpers/localStoreManager";
+import { useFavoritesConstext } from "../../common/context/Favorites";
+
+
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 export default function FavoriteButton({id, name, image, types}) {
 
-    const [isFavorite, setIsFavorite] = useState(getFavorites().includes(name));
+    const {
+        addFavorite,
+        removeFavorite,
+        checksIfFavorite } = useFavoritesConstext();
+    
+    const [isFavorite, setIsFavorite] = useState(checksIfFavorite(name));
+
+    const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />
+    const heartRegular = <FontAwesomeIcon icon={faHeartRegular} />
 
     return (
         <FavoriteBtn onClick={() => {
@@ -12,33 +26,25 @@ export default function FavoriteButton({id, name, image, types}) {
                 removeFavorite(name);
                 setIsFavorite(false);
             } else {
-                addFavorite(name);
+                addFavorite(id, name, image, types);
                 setIsFavorite(true);
             }
-            console.log(getFavorites());
         }}>
-            <p>{isFavorite ? 'X' : 'V'}</p>
+            <FavoriteIcon isFavorite={isFavorite}>{isFavorite ? heartSolid : heartRegular}</FavoriteIcon>
         </FavoriteBtn>
     );
 }
 
 const FavoriteBtn = styled.button`
-    /* position: absolute;
-    top: 24px;
-    right: 15px; */
     border: none;
+    background-color: inherit;
+`;
 
-    /* background-color: inherit; */
-    
-    /* 
-    
-    cursor: pointer; */
-
-    /* font-family: Font Awesome 5 Free; */
-    /* font-style: normal;
+const FavoriteIcon = styled.p`
+    font-style: normal;
     font-weight: 900;
     font-size: 20px;
     line-height: 23px;
 
-    color: #FFFBEB; */
+    color: ${props => props.isFavorite  ? '#FFFBEB' : '#00000066'};
 `;

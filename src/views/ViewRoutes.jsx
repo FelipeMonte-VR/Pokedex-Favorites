@@ -6,17 +6,20 @@ import Favoritos from "../pages/Favoritos";
 import PageNotFound from "../pages/PageNotFound";
 
 import { routePaths } from "../consts/routePaths.js";
+import { FavoritesProvider } from "../common/context/Favorites";
 
 export default function ViewRoutes() {
     return (
-        <Routes>
-            <Route index element={<Home />} />
+        <FavoritesProvider>
+            <Routes>
+                <Route index element={<Home />} />
 
-            <Route path={routePaths.detalhes} element={<Detalhes />} />
-            
-            <Route path={routePaths.favoritos} element={<Favoritos />} />
+                <Route path={routePaths.detalhes} element={<Detalhes />} />
+                
+                <Route path={routePaths.favoritos} element={<Favoritos />} />
 
-            <Route path="*" element={<PageNotFound />} />
-        </Routes>
+                <Route path="*" element={<PageNotFound />} />
+            </Routes>
+        </FavoritesProvider>
     );
 }

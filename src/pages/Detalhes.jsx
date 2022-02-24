@@ -102,7 +102,7 @@ function buildBasics(pokemon) {
             <Name>{pokemon.name}</Name>
 
             <FavoriteButtonPosition>
-                <FavoriteButton name={pokemon.name}/>
+                <FavoriteButton id={pokemon.id} name={pokemon.name} image={pokemon.image} types={pokemon.types}/>
             </FavoriteButtonPosition>
 
             <Number>{padNumeber(pokemon.id)}</Number>
@@ -332,4 +332,9 @@ const FavoriteButtonPosition = styled.div`
     position: absolute;
     top: 27px;
     right: 32px;
+
+    font-style: normal;
+    font-weight: normal;
+    transform: scale(1.7);
+    line-height: 34px;
 `;

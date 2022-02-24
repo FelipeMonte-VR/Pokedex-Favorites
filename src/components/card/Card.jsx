@@ -102,6 +102,10 @@ const CardLink = styled(Link)`
 
 const FavoriteButtonPosition = styled.div`
     position: absolute;
-    top: 24px;
-    right: 15px;
+    top: 22px;
+    right: 11px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
 `;
