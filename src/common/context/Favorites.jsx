@@ -3,7 +3,11 @@ import { createContext, useContext, useState } from "react";
 export const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({children}) => {
-
+    /*
+        Creates a provider to share favorite pokemons between components.
+        Uses "localStorage" to store the favorites list locally.
+    */
+    
     const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem("favorites")));
 
     return(
@@ -25,7 +29,6 @@ export const useFavoritesConstext = () => {
     } = useContext(FavoritesContext);
 
     function addFavorite(id, name, image, types) {
-        // let obj = {pokemon};
         let obj = {'id': id, 'name': name, 'image': image, 'types': types};
         let newFavorites = favorites;
         if (newFavorites === null) {

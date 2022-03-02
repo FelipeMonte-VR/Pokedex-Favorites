@@ -1,9 +1,16 @@
 import styled from "styled-components";
-import { useFavoritesConstext } from "../common/context/Favorites";
+
 import Card from "../components/card/Card";
 import Header from "../components/header/Header";
 
+import { useFavoritesConstext } from "../common/context/Favorites";
+
 export default function Favoritos() {
+    /*
+        Creates a page-component that displays a list with the favorite pokemons.
+        The list is stored/loaded in client-side.
+        The list is passed among the components by context.
+    */
 
     const {favorites} = useFavoritesConstext();
 

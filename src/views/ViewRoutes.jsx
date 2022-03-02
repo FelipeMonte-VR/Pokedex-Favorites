@@ -5,10 +5,16 @@ import Detalhes from "../pages/Detalhes";
 import Favoritos from "../pages/Favoritos";
 import PageNotFound from "../pages/PageNotFound";
 
-import { routePaths } from "../consts/routePaths.js";
 import { FavoritesProvider } from "../common/context/Favorites";
 
+import { routePaths } from "../consts/routePaths.js";
+
 export default function ViewRoutes() {
+    /*
+        Creates a component that defines the routes to the pages.
+        The routes uses react-router-dom v6.
+    */
+
     return (
         <FavoritesProvider>
             <Routes>

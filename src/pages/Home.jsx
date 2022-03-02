@@ -7,7 +7,13 @@ import LoadingMessage from "../components/loadingMessage/LoadingMessage";
 import ErrorMessage from "../components/errorMessage/ErrorMessage";
 
 export default function Home() {
-  
+    /*
+        Creates a page-component that displays a list of pokemons. It's the main page.
+        The list is fetched from an API.
+        It is possible to filter the pokemons shown by typing their names in a search field.
+        A state machine is responsible for controlling the displayed content (loading, error or main content).
+    */
+   
     const [pokemons, setPokemons] = useState([]);
     const [status, setStatus] = useState('loading');
     const [filter, setFilter] = useState("");

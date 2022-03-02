@@ -1,12 +1,18 @@
 import styled from "styled-components";
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 
-import logo_img from "../../assets/images/logo.png";
 import { routePaths } from "../../consts/routePaths";
 
+import logo_img from "../../assets/images/logo.png";
+
 export default function Header() {
+    /*
+        Creates a HTML header tag.
+        The header is composed of an image (logo) and a link to the favorites list.
+    */
+    
     const heartSolid = <FontAwesomeIcon icon={faHeartSolid} />
 
     return(

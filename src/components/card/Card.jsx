@@ -1,12 +1,19 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+
+import FavoriteButton from "../favoriteButton/FavoriteButton.jsx";
+
+import padNumeber from "../../helpers/padNumber.js";
 
 import { cardColors } from "../../consts/cardColors.js";
 import { routePaths } from "../../consts/routePaths.js";
-import FavoriteButton from "../favoriteButton/FavoriteButton.jsx";
-import padNumeber from "../../helpers/padNumber.js";
 
 export default function Card({id, name, image, types}) {
+    /*
+        Creates a pokemon card component. This component is intended to be used in a ul, so it has an unique key.
+        The card displays the pokemon's name, id and image. Its background is colored according to the first type of the pokemon.
+        The card contains a link to detailed information about the pokemon (another component) and a heart-shaped icon.
+        The heart-shaped icon is a toggle button to add or remove the pokemon from the favorites list.
+    */
 
     return(
         <PokemonCard type={cardColors[types[0]]} key={id}>
@@ -20,7 +27,7 @@ export default function Card({id, name, image, types}) {
             </CardContent>
 
             <Links>
-                <CardLink to={routePaths.detalhes+'?p='+name} />
+                <CardLink href={routePaths.detalhes+'?p='+name} />
                 <FavoriteButtonPosition>
                     <FavoriteButton id={id} name={name} image={image} types={types}/>
                 </FavoriteButtonPosition>
@@ -90,7 +97,7 @@ const PokemonImage = styled.img`
 const Links = styled.div`
 `;
 
-const CardLink = styled(Link)`
+const CardLink = styled.a`
 
     position: absolute;
     top: 0;

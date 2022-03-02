@@ -1,11 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import { toBeInTheDocument } from '@testing-library/jest-dom';
-
 import React from "react";
+
 import Header from "../components/header/Header";
 
 
 describe('Cabeçalho', () => {
+    /*
+        Creates a test-component related to the Header component.
+    */
+
     describe('Quando eu carrego um página com cabeçalho', () => {
         it('o logo é exibido', () => {
             render(<Header />);

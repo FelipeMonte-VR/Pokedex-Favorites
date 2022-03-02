@@ -2,17 +2,25 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useSearchParams } from "react-router-dom";
 
-import capitalizeFirstLetter from "../helpers/captalizeFirst";
 import Header from "../components/header/Header";
-import { cardColors } from "../consts/cardColors";
-import { routePaths } from "../consts/routePaths";
 import LoadingMessage from "../components/loadingMessage/LoadingMessage";
 import ErrorMessage from "../components/errorMessage/ErrorMessage";
 import AnimatedBar from "../components/animatedBar/AnimatedBar";
-import padNumeber from "../helpers/padNumber";
 import FavoriteButton from "../components/favoriteButton/FavoriteButton";
 
+import capitalizeFirstLetter from "../helpers/captalizeFirst";
+import { routePaths } from "../consts/routePaths";
+
+import { cardColors } from "../consts/cardColors";
+import padNumeber from "../helpers/padNumber";
+
 export default function Detalhes() {
+    /*
+        Creates a page-component that displays a pokemon's details.
+        The details are fetched from an API.
+        The displayed pokemon is passed by parameter in the URL ('?p=').
+        A state machine is responsible for controlling the displayed content (loading, error or details).
+    */
 
     const [searchParams, setSearchParams] = useSearchParams();
     const [pokemon, setPokemon] = useState([]);
