@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link, useSearchParams } from "react-router-dom";
 
 import Header from "../components/header/Header";
@@ -13,6 +13,7 @@ import { routePaths } from "../consts/routePaths";
 
 import { cardColors } from "../consts/cardColors";
 import padNumeber from "../helpers/padNumber";
+import PokemonImage from "../components/details/PokemonImage";
 
 export default function Detalhes() {
     /*
@@ -25,7 +26,6 @@ export default function Detalhes() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [pokemon, setPokemon] = useState([]);
     const [status, setStatus] = useState('loading');
-    const [sss, setSss] = useState(0);
 
     let mainContent;
 
@@ -56,11 +56,20 @@ export default function Detalhes() {
     );
 
     if (status === 'loading') {
-        mainContent = <LoadingMessage />
+        mainContent = 
+            <Details bgColor={"#FFFFFF"}>
+                <LoadingMessage />
+            </Details>
     }else if (status === 'error') {
-        mainContent = <ErrorMessage />
+        mainContent = 
+            <Details bgColor={"#FFFFFF"}>
+                <ErrorMessage />
+            </Details>
     } else {
-        mainContent = <MainContent pokemon={pokemon} sss={sss} setSss={setSss}/>
+        mainContent = 
+            <Details bgColor={cardColors[pokemon["types"][0]]}>
+                <MainContent pokemon={pokemon} />
+            </Details>
     }
 
     return (
@@ -74,7 +83,7 @@ export default function Detalhes() {
 
 function MainContent({pokemon}) {
     return (
-        <Details type={cardColors[pokemon["types"][0]]}>
+        <>
 
             {buildBasics(pokemon)}
             
@@ -86,9 +95,9 @@ function MainContent({pokemon}) {
                         )
                     })}
                 </StatsList>
-            </Stats>
+            </Stats> 
 
-        </Details>
+        </>
     );
 }
 
@@ -116,7 +125,7 @@ function buildBasics(pokemon) {
             <Number>{padNumeber(pokemon.id)}</Number>
 
             <SpotLight>
-                <PokemonImage src={pokemon.image} alt={pokemon.name} />
+                <PokemonImage image={pokemon.image} name={pokemon.name} parentHeight={236}/>
             </SpotLight>
 
             <BasicInfos>
@@ -164,7 +173,9 @@ const Details = styled.section`
     width: 877px;
     height: 436px;
     margin: auto;
-    background: ${props => props.type};
+    background: ${props => props.bgColor};
+
+    transition: background-color 1s linear;
 
     border-radius: 25px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -228,6 +239,7 @@ const Number = styled.p`
 `;
 
 const SpotLight = styled.div`
+    position: relative;
     width: 236px;
     height: 236px;
     margin: auto;
@@ -237,13 +249,8 @@ const SpotLight = styled.div`
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 `;
-
-const PokemonImage = styled.img`
-    width: 190px;
-`;
-
 
 const BasicInfos = styled.ul`
     display: flex;

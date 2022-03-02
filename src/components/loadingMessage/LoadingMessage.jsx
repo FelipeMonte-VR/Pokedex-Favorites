@@ -1,7 +1,7 @@
 export default function LoadingMessage() {
     return (
-        <main>
+        <section>
             <p>Carregando...</p>
-        </main>
+        </section>
     );
 }

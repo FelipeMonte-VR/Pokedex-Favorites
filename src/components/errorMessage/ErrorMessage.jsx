@@ -1,7 +1,7 @@
 export default function ErrorMessage() {
     return (
-        <main>
+        <section>
             <p>Erro ao se conectar com API.</p>
-        </main>
+        </section>
     );
 }
