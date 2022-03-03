@@ -5,15 +5,15 @@ import { Link, useSearchParams } from "react-router-dom";
 import Header from "../components/header/Header";
 import LoadingMessage from "../components/loadingMessage/LoadingMessage";
 import ErrorMessage from "../components/errorMessage/ErrorMessage";
-import AnimatedBar from "../components/animatedBar/AnimatedBar";
 import FavoriteButton from "../components/favoriteButton/FavoriteButton";
+import AnimatedBar from "../components/details/animatedBar/AnimatedBar";
+import PokemonImage from "../components/details/pokemonImage/PokemonImage";
 
 import capitalizeFirstLetter from "../helpers/captalizeFirst";
 import { routePaths } from "../consts/routePaths";
 
 import { cardColors } from "../consts/cardColors";
 import padNumeber from "../helpers/padNumber";
-import PokemonImage from "../components/details/PokemonImage";
 
 export default function Detalhes() {
     /*

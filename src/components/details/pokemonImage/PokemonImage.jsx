@@ -3,21 +3,25 @@ import styled, { keyframes } from "styled-components";
 
 export default function PokemonImage({image, name, parentHeight}) {
 
-    const initialPosition = 50
+    const finalPosition = 0;
+    const initialPosition = -50;
     const animationTime = 1000;
     const animationInterval = 5;
-    const [slideEffect, setSlideEffect] = useState(initialPosition);
-
-
     const stepInterval = 10;
-    const stepSize = initialPosition / (animationTime/stepInterval)
+    const stepSize = (finalPosition-initialPosition) / (animationTime/stepInterval);
+    
+    const [slideEffect, setSlideEffect] = useState(initialPosition);
+    
+    const [lastDate, setLastDate] = useState(Date.now());
 
     useEffect(() => {
         const interval = setInterval(() => {
-            let slide = slideEffect - stepSize ;
+            let slide = slideEffect + stepSize;
 
-            if (slide > 0) {
+            if (slide < finalPosition) {
                 setSlideEffect(slide);
+                console.log('elapsed time: ' + (Date.now() - lastDate));
+                setLastDate(Date.now());
             }
 
         }, animationInterval);
@@ -38,10 +42,10 @@ const fadeInEffect = keyframes`
 const PokemonImg = styled.img`
     position: absolute;
     
-    width: 190px;
-    height: 190px;
+    height: ${props => props.height}px;
+    // width: 190px;
 
-    top: ${props => props.parentHeight/2-props.height/2 - props.slideEffect }px;
+    top: ${props => props.parentHeight/2-props.height/2 + props.slideEffect }px;
 
     animation-name: ${fadeInEffect};
     animation-duration: 2s;
